@@ -38,6 +38,17 @@ public class BoardsPage extends BasePage
     {
         btnCreateNewBoard.click();
         boardTitle.sendKeys(board.getBoardTitle());
-        btnCreate.click();
+        clickWait(btnCreate,5);
+    }
+
+    public void createNewBoardNegative(Board board)
+    {
+        btnCreateNewBoard.click();
+        boardTitle.sendKeys(board.getBoardTitle());
+    }
+
+    public boolean buttonCreateIsNotClickable()
+    {
+       return new WebDriverWait(driver,5).until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(btnCreate)));
     }
 }
