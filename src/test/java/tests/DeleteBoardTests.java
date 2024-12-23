@@ -10,9 +10,10 @@ import pages.BoardsPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.MyBoardPage;
-import utils.RandomUtils;
 
-public class BoardsTest extends AppManager
+import static utils.RandomUtils.*;
+
+public class DeleteBoardTests extends AppManager
 {
     BoardsPage boardsPage;
     MyBoardPage myBoardPage;
@@ -27,26 +28,16 @@ public class BoardsTest extends AppManager
         new HomePage(getDriver()).clickBtnLogin();
         new LoginPage(getDriver()).login(user);
         boardsPage = new BoardsPage(getDriver());
+        Board board = Board.builder().boardTitle(generateString(6)).build();
+        boardsPage.createNewBoard(board);
         myBoardPage = new MyBoardPage(getDriver());
     }
 
     @Test
-    public void createNewBoardPositiveTest()
+    public void deleteFirstBoardPositive()
     {
-        Board board = Board.builder()
-                .boardTitle(RandomUtils.generateString(7))
-                .build();
-        boardsPage.createNewBoard(board);
-        Assert.assertTrue(myBoardPage.validateBoardName(board.getBoardTitle(),5));
-    }
-
-    @Test
-    public void createNewBoardNegativeTest()
-    {
-        Board board = Board.builder()
-                .boardTitle("")
-                .build();
-        boardsPage.createNewBoardNegative(board);
-        Assert.assertTrue(boardsPage.buttonCreateIsNotClickable());
+        boardsPage.openFirstBoard();
+        myBoardPage.deleteFirstBoard();
+        Assert.assertTrue(boardsPage.validateConfirmMessage("Board deleted."));
     }
 }

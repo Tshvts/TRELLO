@@ -28,6 +28,12 @@ public class BoardsPage extends BasePage
     @FindBy(xpath = "//button[@data-testid='create-board-submit-button']")
     WebElement btnCreate;
 
+    @FindBy(xpath = "//div[@class='board-tile-details is-badged']")
+    WebElement firstBoard;
+
+    @FindBy(xpath = "//span[@class='QMKgZFIlTLiEJN']")
+    WebElement confirmMessage;
+
     public boolean validateUrl()
     {
       return new WebDriverWait(driver, 5).until(ExpectedConditions.urlContains("boards"));
@@ -50,5 +56,15 @@ public class BoardsPage extends BasePage
     public boolean buttonCreateIsNotClickable()
     {
        return new WebDriverWait(driver,5).until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(btnCreate)));
+    }
+
+    public void openFirstBoard()
+    {
+        firstBoard.click();
+    }
+
+    public boolean validateConfirmMessage(String text)
+    {
+        return validateTextElementWait(confirmMessage,text,3);
     }
 }

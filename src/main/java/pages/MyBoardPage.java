@@ -19,6 +19,21 @@ public class MyBoardPage extends BasePage
     @FindBy(xpath = "//h1[@data-testid='board-name-display']")
     WebElement boardName;
 
+    @FindBy(xpath = "//button[@class='GDunJzzgFqQY_3 frrHNIWnTojsww bxgKMAm3lq5BpA HAVwIqCeMHpVKh SEj5vUdI3VvxDc']")
+    WebElement btnMenu;
+
+    @FindBy(xpath = "//div[text()='Close board']")
+    WebElement btnCloseBoard;
+
+    @FindBy(xpath = "//button[text()='Close']")
+    WebElement btnClose;
+
+    @FindBy(xpath = "//button[@data-testid='close-board-delete-board-button']")
+    WebElement btnDeleteBoard;
+
+    @FindBy(xpath = "//button[@data-testid='close-board-delete-board-confirm-button']")
+    WebElement btnDeleteConfirm;
+
     public boolean validateBoardName(String text, int time)
     {
         try {
@@ -30,5 +45,14 @@ public class MyBoardPage extends BasePage
             return false;
         }
 
+    }
+
+    public void deleteFirstBoard()
+    {
+        clickWait(btnMenu,3);
+        clickWait(btnCloseBoard,3);
+        clickWait(btnClose,3);
+        clickWait(btnDeleteBoard,3);
+        clickWait(btnDeleteConfirm,3);
     }
 }
