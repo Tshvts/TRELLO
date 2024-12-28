@@ -34,6 +34,12 @@ public class BoardsPage extends BasePage
     @FindBy(xpath = "//span[@class='QMKgZFIlTLiEJN']")
     WebElement confirmMessage;
 
+    @FindBy(xpath = "//div[@data-testid='header-member-menu-avatar']")
+    WebElement btnAvatar;
+
+    @FindBy(xpath = "//span[text()='Manage account']")
+    WebElement btnManageAccount;
+
     public boolean validateUrl()
     {
       return new WebDriverWait(driver, 5).until(ExpectedConditions.urlContains("boards"));
@@ -66,5 +72,11 @@ public class BoardsPage extends BasePage
     public boolean validateConfirmMessage(String text)
     {
         return validateTextElementWait(confirmMessage,text,3);
+    }
+
+    public void openMyAccount()
+    {
+        clickWait(btnAvatar,3);
+        btnManageAccount.click();
     }
 }
