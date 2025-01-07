@@ -5,13 +5,17 @@ import dto.User;
 import manager.AppManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.BoardsPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.MyBoardPage;
+import utils.TestNGListener;
 
 import static utils.RandomUtils.*;
+
+@Listeners(TestNGListener.class)
 
 public class DeleteBoardTests extends AppManager
 {

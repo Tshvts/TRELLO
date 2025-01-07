@@ -32,6 +32,9 @@ public class AtlassianProfilePage extends BasePage
     @FindBy(xpath = "//div[@class='css-1trnsdp']")
     WebElement popUpMessage;
 
+    @FindBy(xpath = "//h2[@class='css-1tqa3gm']")
+    WebElement popUpMessageWrongFormat;
+
     public void changeProfilePhoto(String photoPath)
     {
         Actions actions = new Actions(driver);
@@ -45,5 +48,9 @@ public class AtlassianProfilePage extends BasePage
     public boolean validateMessage(String text)
     {
         return validateTextElementWait(popUpMessage,text,3);
+    }
+
+    public boolean validateMessageWrongFormatMessage(String text) {
+        return validateTextElementWait(popUpMessageWrongFormat, text, 5);
     }
 }
